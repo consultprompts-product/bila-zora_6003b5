@@ -1,0 +1,728 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bila Zora — Golden evenings in Sveti Nikole</title>
+<meta name="description" content="Bila Zora, Sveti Nikole. Breakfast, lunch and candlelit dinners, Mon - Sun : 8AM - 12AM."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&amp;family=Marcellus&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --color-primary: #8E6D2B;
+    --color-secondary: #7A8A42;
+    --color-bg: #151910;
+    --color-surface: #20261A;
+    --color-border: #3E4529;
+    --color-heading: #DDB861;
+    --color-body: #D6D0B8;
+    --font-display: "Marcellus", "Cormorant Garamond", Georgia, serif;
+    --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-bg);
+    color: var(--color-body);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display { font-family: var(--font-display); font-weight: 400; color: var(--color-heading); }
+  .inscription { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .32em; }
+  .meta { font-family: var(--font-body); font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; font-weight: 400; }
+  ::selection { background: color-mix(in srgb, var(--color-heading) 35%, transparent); color: var(--color-heading); }
+
+  /* grain over everything, very quiet */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* focus */
+  a:focus-visible, button:focus-visible { outline: 1px solid var(--color-heading); outline-offset: 4px; border-radius: 6px; }
+
+  /* nav */
+  .nav-link { position: relative; padding: .35rem 0; transition: color .3s; }
+  .nav-link::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 0; height: 1px; background: var(--color-heading); transition: left .35s, right .35s; }
+  .nav-link:hover, .nav-link:focus-visible { color: var(--color-heading); }
+  .nav-link:hover::after, .nav-link:focus-visible::after { left: 0; right: 0; }
+
+  /* buttons */
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: .75rem; padding: 1rem 1.9rem; border-radius: 999px;
+    background: linear-gradient(135deg, var(--color-heading), color-mix(in srgb, var(--color-heading) 70%, var(--color-primary)));
+    color: var(--color-bg); font-weight: 500; letter-spacing: .2em; text-transform: uppercase; font-size: .78rem;
+    box-shadow: 0 10px 40px -12px color-mix(in srgb, var(--color-heading) 60%, transparent), inset 0 1px 0 color-mix(in srgb, var(--color-body) 50%, transparent);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 16px 50px -12px color-mix(in srgb, var(--color-heading) 80%, transparent); }
+  .btn-line {
+    display: inline-flex; align-items: center; gap: .75rem; padding: 1rem 1.6rem; border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-heading) 45%, transparent); color: var(--color-heading);
+    letter-spacing: .2em; text-transform: uppercase; font-size: .78rem; font-weight: 400; transition: background .3s, border-color .3s;
+  }
+  .btn-line:hover { background: color-mix(in srgb, var(--color-secondary) 22%, transparent); border-color: var(--color-secondary); }
+
+  /* panels: soft corners, candlelight on brass */
+  .brass {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 92%, var(--color-heading)), var(--color-surface));
+    border: 1px solid var(--color-border); border-radius: 1.5rem;
+    box-shadow: inset 0 0 60px -10px color-mix(in srgb, var(--color-primary) 30%, transparent), inset 0 1px 0 color-mix(in srgb, var(--color-heading) 18%, transparent), 0 30px 80px -40px rgba(0,0,0,.7);
+  }
+
+  /* hero */
+  #hero {
+    background:
+      radial-gradient(ellipse 60% 55% at 72% 38%, color-mix(in srgb, var(--color-primary) 42%, transparent), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 90%, color-mix(in srgb, var(--color-secondary) 22%, transparent), transparent 70%),
+      linear-gradient(180deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-bg) 70%, var(--color-surface)) 60%, var(--color-bg) 100%);
+  }
+  .hero-fade { background: linear-gradient(0deg, color-mix(in srgb, var(--color-bg) 95%, var(--color-secondary)) 0%, transparent 100%); }
+  .em-gold {
+    background: linear-gradient(100deg, var(--color-heading) 10%, color-mix(in srgb, var(--color-heading) 55%, var(--color-body)) 45%, var(--color-heading) 60%, var(--color-primary) 110%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .swash path { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 2.4s .6s cubic-bezier(.6,.1,.2,1) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .seal-ring { transform-box: view-box; transform-origin: 200px 200px; animation: spin 60s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .candle { animation: flicker 5s ease-in-out infinite; }
+  @keyframes flicker { 0%,100% { opacity: .85; } 40% { opacity: 1; } 55% { opacity: .7; } 70% { opacity: .95; } }
+  .sway { transform-origin: 0% 100%; animation: sway 14s ease-in-out infinite; }
+  @keyframes sway { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(2.2deg); } }
+
+  /* marquee */
+  .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* decorative pattern backdrop */
+  .lattice { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  /* menu */
+  .menu-card { position: relative; }
+  .menu-card::before {
+    content: ""; position: absolute; inset: .9rem; border: 1px solid color-mix(in srgb, var(--color-heading) 22%, transparent); border-radius: 1rem; pointer-events: none;
+  }
+  #menu-categories { columns: 1; column-gap: 4.5rem; }
+  @media (min-width: 900px) { #menu-categories { columns: 2; } }
+  .menu-cat { break-inside: avoid; padding: 0 0 2.75rem; }
+  .menu-cat > h3 {
+    display: flex; align-items: center; gap: .9rem; font-size: 1.05rem; letter-spacing: .32em; text-transform: uppercase; margin-bottom: 1.4rem;
+  }
+  .menu-cat > h3::before {
+    content: ""; width: 14px; height: 22px; flex: none; background: var(--color-secondary);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 22'><path d='M7 0C13 6 13 16 7 22C1 16 1 6 7 0Z'/></svg>") center/contain no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 22'><path d='M7 0C13 6 13 16 7 22C1 16 1 6 7 0Z'/></svg>") center/contain no-repeat;
+  }
+  .menu-cat > h3::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--color-border), transparent); }
+  .mi {
+    display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "t l p" "d d d" "i i i";
+    column-gap: .6rem; align-items: baseline; padding: .85rem 0; border-radius: .5rem; transition: background .3s;
+  }
+  .mi::before { content: ""; grid-area: l; border-bottom: 1px dotted color-mix(in srgb, var(--color-heading) 40%, transparent); transform: translateY(-.3rem); min-width: 1.5rem; }
+  .mi [data-field="title"] { grid-area: t; font-family: var(--font-display); color: var(--color-heading); font-size: 1.12rem; }
+  .mi [data-field="price"] { grid-area: p; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in srgb, var(--color-body) 70%, transparent); }
+  .mi [data-field="description"] { grid-area: d; font-size: .92rem; line-height: 1.6; color: color-mix(in srgb, var(--color-body) 78%, transparent); margin-top: .3rem; max-width: 34rem; }
+  .mi [data-field="image-wrap"] { grid-area: i; margin-top: .7rem; width: 5.5rem; height: 5.5rem; border-radius: .75rem; overflow: hidden; border: 1px solid var(--color-border); }
+  .mi [data-field="image-wrap"] img { width: 100%; height: 100%; object-fit: cover; }
+  .mi:hover [data-field="title"] { color: color-mix(in srgb, var(--color-heading) 75%, var(--color-body)); }
+  .mi:hover::before { border-bottom-color: var(--color-secondary); }
+
+  /* evenings (services) */
+  #services-grid { counter-reset: hour; }
+  .ev-row {
+    counter-increment: hour; position: relative; display: grid; grid-template-columns: 3.2rem 1fr; column-gap: 1rem; row-gap: .5rem;
+    padding: 2rem 0; border-top: 1px solid var(--color-border); transition: background .4s;
+  }
+  .ev-row::before {
+    content: counter(hour, upper-roman); grid-row: 1 / span 3; font-family: var(--font-display); color: var(--color-primary); font-size: 1.6rem; line-height: 1;
+  }
+  .ev-row h3 { font-size: clamp(1.5rem, 3.4vw, 2.4rem); line-height: 1.1; transition: transform .4s; }
+  .ev-row [data-field="description"] { line-height: 1.75; color: color-mix(in srgb, var(--color-body) 85%, transparent); max-width: 36rem; }
+  .ev-row [data-field="price"] { font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: var(--color-secondary); font-weight: 500; }
+  .ev-row [data-field="image-wrap"] { grid-column: 2; margin-top: .75rem; border-radius: 1rem; overflow: hidden; aspect-ratio: 16/9; max-width: 22rem; border: 1px solid var(--color-border); }
+  .ev-row [data-field="image-wrap"] img { width: 100%; height: 100%; object-fit: cover; }
+  .ev-row:last-of-type { border-bottom: 1px solid var(--color-border); }
+  .ev-row:hover h3 { transform: translateX(.5rem); }
+  .ev-row:hover::before { color: var(--color-secondary); }
+  @media (min-width: 900px) {
+    .ev-row { grid-template-columns: 6rem minmax(0, 1.05fr) minmax(0, 1.3fr) 9rem; column-gap: 2.5rem; padding: 2.6rem 1.5rem; border-radius: 1rem; }
+    .ev-row::before { grid-row: auto; font-size: 2.2rem; }
+    .ev-row [data-field="price"] { text-align: right; padding-top: .7rem; }
+    .ev-row [data-field="description"] { padding-top: .35rem; }
+    .ev-row [data-field="image-wrap"] { grid-column: 2 / span 2; }
+    .ev-row:nth-child(even) { background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-surface) 80%, transparent) 40%, transparent); }
+  }
+
+  /* gallery masonry */
+  #gallery-grid { columns: 2; column-gap: .9rem; }
+  @media (min-width: 768px) { #gallery-grid { columns: 3; column-gap: 1.5rem; } }
+  .g-tile {
+    position: relative; break-inside: avoid; margin-bottom: .9rem; border-radius: 1.1rem; overflow: hidden; aspect-ratio: 4/5;
+    background:
+      radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--color-primary) 35%, transparent), transparent 55%),
+      linear-gradient(160deg, var(--color-surface), color-mix(in srgb, var(--color-bg) 80%, var(--color-secondary)));
+    border: 1px solid var(--color-border);
+    box-shadow: inset 0 0 50px -15px color-mix(in srgb, var(--color-primary) 45%, transparent);
+  }
+  @media (min-width: 768px) { .g-tile { margin-bottom: 1.5rem; } }
+  #gallery-grid > .g-tile:nth-child(3n+1) { aspect-ratio: 3/4; }
+  #gallery-grid > .g-tile:nth-child(3n+2) { aspect-ratio: 1/1; }
+  #gallery-grid > .g-tile:nth-child(5n+3) { aspect-ratio: 2/3; }
+  #gallery-grid > .g-tile:nth-child(4n) { aspect-ratio: 5/4; }
+  .g-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) brightness(.85); transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter .6s; }
+  .g-tile:hover img { transform: scale(1.05); filter: saturate(1) brightness(1); }
+  .g-tile::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-heading) 0%, transparent); transition: box-shadow .5s; }
+  .g-tile:hover::after { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-heading) 55%, transparent); }
+  .g-ph { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 1.1rem; }
+
+  /* reviews */
+  #reviews-grid { display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) { #reviews-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.75rem; } }
+  .rv { position: relative; padding: 2rem 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+  .rv::before { content: "\201C"; position: absolute; top: -.4rem; right: 1.25rem; font-family: var(--font-display); font-size: 6rem; line-height: 1; color: color-mix(in srgb, var(--color-heading) 22%, transparent); }
+  .rv [data-field="rating"] { font-size: .7rem; letter-spacing: .35em; color: var(--color-primary); }
+  .rv [data-field="text"] { font-family: var(--font-display); color: var(--color-body); font-size: 1.15rem; line-height: 1.55; }
+  .rv [data-field="author"] { font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in srgb, var(--color-body) 65%, transparent); }
+  @media (min-width: 900px) {
+    #reviews-grid > .rv:first-child { grid-column: 1 / -1; padding: 3rem 3.5rem; }
+    #reviews-grid > .rv:first-child [data-field="text"] { font-size: 1.75rem; line-height: 1.4; max-width: 46rem; }
+    #reviews-grid > .rv:nth-child(3n+2) { margin-top: 2.5rem; }
+  }
+
+  /* location */
+  .day { display: flex; flex-direction: column; gap: .35rem; padding: 1rem .9rem; border-left: 1px solid var(--color-border); }
+  .day:first-child { border-left-color: transparent; }
+  .day .d { font-family: var(--font-display); color: var(--color-heading); letter-spacing: .2em; text-transform: uppercase; font-size: .85rem; }
+  .day [id$="-value"] { font-size: .9rem; color: var(--color-body); }
+  .contact-link { transition: color .3s; border-bottom: 1px solid transparent; }
+  .contact-link:hover { color: var(--color-heading); border-bottom-color: var(--color-secondary); }
+
+  /* social slots */
+  .social a { color: inherit; opacity: .7; transition: opacity .3s, color .3s; }
+  .social a:hover { opacity: 1; color: var(--color-heading); }
+  .social a svg { width: 18px; height: 18px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .swash path { stroke-dashoffset: 0; }
+  }
+</style>
+
+
+<meta name="generator" content="consultprompts-static-site v1"/><link rel="stylesheet" href="/assets/css/styles.css"/></head>
+<body class="font-sans">
+
+<nav id="site-nav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between gap-6">
+    <a href="#" class="flex items-center gap-3">
+      <img id="site-logo" alt="logo.png" class="h-12 w-auto object-contain hidden"/>
+      <span id="logo-fallback-text" class="text-2xl font-serif tracking-[0.18em] uppercase text-[var(--site-heading)] hidden">Bila Zora</span>
+    </a>
+    <div class="hidden lg:flex items-center gap-9 text-[0.72rem] uppercase tracking-[0.28em] text-[var(--site-body)]">
+      <a class="nav-link" href="#menu-section">Menu</a>
+      <a class="nav-link" href="#services-section">Evenings</a>
+      <a class="nav-link" href="#gallery-section">Gallery</a>
+      <a class="nav-link" href="#reviews-section">Reviews</a>
+      <a class="nav-link" href="#location-section">Find Us</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="#menu-section" class="hidden sm:inline-flex btn-line !py-2.5 !px-5 !text-[0.68rem]">See Menu</a>
+      <button id="menu-toggle" type="button" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-[var(--site-heading)]/40 text-[var(--site-heading)]" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path id="tg-a" d="M3 7h14"></path><path id="tg-b" d="M3 13h14"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="lg:hidden hidden mx-4 mb-4 brass overflow-hidden">
+    <div class="relative px-7 py-8 flex flex-col gap-1">
+      <a class="mm-link font-serif text-2xl text-[var(--site-heading)] py-2.5 border-b border-[var(--site-border)]" href="#menu-section">Menu</a>
+      <a class="mm-link font-serif text-2xl text-[var(--site-heading)] py-2.5 border-b border-[var(--site-border)]" href="#services-section">Evenings</a>
+      <a class="mm-link font-serif text-2xl text-[var(--site-heading)] py-2.5 border-b border-[var(--site-border)]" href="#gallery-section">Gallery</a>
+      <a class="mm-link font-serif text-2xl text-[var(--site-heading)] py-2.5 border-b border-[var(--site-border)]" href="#reviews-section">Reviews</a>
+      <a class="mm-link font-serif text-2xl text-[var(--site-heading)] py-2.5" href="#location-section">Find Us</a>
+      <p class="meta text-[var(--site-body)]/70 mt-5">Mon - Sun : 8AM - 12AM</p>
+    </div>
+  </div>
+</nav>
+
+<!-- shared drawings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="lf" d="M0 0 C8 -9 24 -9 34 0 C24 9 8 9 0 0 Z M3 0 L29 0"></path>
+    <symbol id="sym-branch" viewBox="0 0 320 400">
+      <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M14 392 C70 320 110 230 160 160 C200 104 250 56 306 14"></path>
+        <path d="M112 236 C90 214 84 196 86 176"></path>
+        <use href="#lf" transform="translate(40 357) rotate(-20)"></use>
+        <use href="#lf" transform="translate(52 340) rotate(-115)"></use>
+        <use href="#lf" transform="translate(78 300) rotate(-12)"></use>
+        <use href="#lf" transform="translate(90 284) rotate(-108)"></use>
+        <use href="#lf" transform="translate(86 178) rotate(-80) scale(.8)"></use>
+        <use href="#lf" transform="translate(88 200) rotate(-160) scale(.75)"></use>
+        <use href="#lf" transform="translate(126 220) rotate(-22)"></use>
+        <use href="#lf" transform="translate(140 200) rotate(-118)"></use>
+        <use href="#lf" transform="translate(162 158) rotate(-18)"></use>
+        <use href="#lf" transform="translate(178 138) rotate(-110)"></use>
+        <use href="#lf" transform="translate(205 108) rotate(-12)"></use>
+        <use href="#lf" transform="translate(222 92) rotate(-102)"></use>
+        <use href="#lf" transform="translate(252 64) rotate(-8) scale(.9)"></use>
+        <use href="#lf" transform="translate(268 50) rotate(-96) scale(.85)"></use>
+        <use href="#lf" transform="translate(292 26) rotate(-34) scale(.8)"></use>
+        <ellipse cx="104" cy="262" rx="6" ry="8" transform="rotate(-25 104 262)"></ellipse>
+        <ellipse cx="190" cy="128" rx="5" ry="7" transform="rotate(-25 190 128)"></ellipse>
+        <ellipse cx="96" cy="160" rx="5" ry="7" transform="rotate(-10 96 160)"></ellipse>
+      </g>
+    </symbol>
+    <symbol id="sym-ornament" viewBox="0 0 200 20">
+      <g fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M0 10 H78"></path><path d="M122 10 H200"></path>
+        <path d="M100 2 L108 10 L100 18 L92 10 Z"></path>
+        <path d="M84 10 C88 5 92 5 92 10 C92 15 88 15 84 10Z"></path>
+        <path d="M116 10 C112 5 108 5 108 10 C108 15 112 15 116 10Z"></path>
+      </g>
+    </symbol>
+    <pattern id="pat-lozenge" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M28 4 L52 28 L28 52 L4 28 Z" fill="none" style="stroke:var(--color-border)" stroke-width=".8"></path>
+      <path d="M28 20 C32 24 32 32 28 36 C24 32 24 24 28 20Z" style="fill:var(--color-border)"></path>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- HERO -->
+<section id="hero" class="relative min-h-[100svh] overflow-hidden">
+  <img id="hero-bg-image" alt="" style="display:none" class="absolute inset-0 w-full h-full object-cover" data-cp-on-error="1"/>
+  <div id="hero-bg-overlay" style="display:none;background-color:color-mix(in srgb, #151910 85%, transparent)" class="absolute inset-0"></div>
+  <div class="relative z-10 min-h-[100svh] flex flex-col">
+    <!-- decorations -->
+    <svg class="sway absolute -left-16 bottom-0 w-[18rem] sm:w-[26rem] lg:w-[34rem] h-auto text-[var(--site-heading)] opacity-[0.22] pointer-events-none" viewBox="0 0 320 400" aria-hidden="true"><use href="#sym-branch"></use></svg>
+    <svg class="absolute -right-10 -top-6 w-[14rem] sm:w-[20rem] h-auto text-[var(--site-heading)] opacity-[0.14] pointer-events-none" style="transform:scale(-1,-1)" viewBox="0 0 320 400" aria-hidden="true"><use href="#sym-branch"></use></svg>
+    <div class="hero-fade absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"></div>
+
+    <div class="relative flex-1 max-w-7xl w-full mx-auto px-5 sm:px-8 pt-32 sm:pt-36 pb-10 grid lg:grid-cols-12 gap-10 lg:gap-6 items-end">
+      <!-- seal -->
+      <div class="lg:col-span-5 lg:order-2 flex justify-start lg:justify-end lg:self-center">
+        <svg class="candle w-44 sm:w-60 lg:w-[26rem] h-auto" viewBox="0 0 400 400" role="img" aria-label="Bila Zora seal: a sun rising over a horizon, ringed by the words Sveti Nikole, from dawn until midnight">
+          <defs>
+            <radialGradient id="sun-g" cx="50%" cy="100%" r="80%">
+              <stop offset="0%" style="stop-color:var(--color-heading);stop-opacity:.95"></stop>
+              <stop offset="60%" style="stop-color:var(--color-primary);stop-opacity:.55"></stop>
+              <stop offset="100%" style="stop-color:var(--color-primary);stop-opacity:0"></stop>
+            </radialGradient>
+            <path id="seal-circle" d="M200,200 m-162,0 a162,162 0 1,1 324,0 a162,162 0 1,1 -324,0"></path>
+            <clipPath id="sun-clip"><rect x="0" y="0" width="400" height="232"></rect></clipPath>
+          </defs>
+          <circle cx="200" cy="200" r="190" fill="none" style="stroke:var(--color-heading)" stroke-opacity=".35" stroke-width="1"></circle>
+          <circle cx="200" cy="200" r="140" fill="none" style="stroke:var(--color-heading)" stroke-opacity=".5" stroke-width="1"></circle>
+          <circle cx="200" cy="200" r="134" fill="none" style="stroke:var(--color-primary)" stroke-opacity=".6" stroke-width=".6" stroke-dasharray="2 5"></circle>
+          <g class="seal-ring">
+            <text style="fill:var(--color-heading);font-family:var(--font-display);letter-spacing:.42em" font-size="15">
+              <textPath href="#seal-circle">BILA ZORA · SVETI NIKOLE · FROM DAWN · UNTIL MIDNIGHT ·</textPath>
+            </text>
+          </g>
+          <g clip-path="url(#sun-clip)">
+            <circle cx="200" cy="232" r="70" fill="url(#sun-g)"></circle>
+            <g style="stroke:var(--color-heading)" stroke-opacity=".55" stroke-width="1">
+              <path d="M200 140 V110"></path><path d="M154 152 L139 126"></path><path d="M246 152 L261 126"></path><path d="M120 186 L94 171"></path><path d="M280 186 L306 171"></path>
+            </g>
+          </g>
+          <path d="M80 232 H320" style="stroke:var(--color-heading)" stroke-width="1" stroke-opacity=".8"></path>
+          <path d="M110 246 H290" style="stroke:var(--color-heading)" stroke-width=".6" stroke-opacity=".4"></path>
+          <path d="M140 258 H260" style="stroke:var(--color-heading)" stroke-width=".6" stroke-opacity=".25"></path>
+          <text x="200" y="296" text-anchor="middle" style="fill:var(--color-heading);font-family:var(--font-display);letter-spacing:.5em" font-size="13">8AM — 12AM</text>
+        </svg>
+      </div>
+
+      <!-- headline -->
+      <div class="lg:col-span-7 lg:order-1">
+        <p class="meta text-[var(--site-heading)]/80 mb-6 flex items-center gap-4"><span class="inline-block w-10 h-px bg-[var(--site-heading)]/60"></span>Sveti Nikole · Ovče Pole</p>
+        <h1 class="text-[clamp(2.7rem,8.4vw,6.6rem)] leading-[1.02] tracking-[0.01em]">
+          Golden evenings, lit
+          <span class="relative inline-block whitespace-nowrap">
+            <span class="em-gold">until midnight</span>
+            <svg class="swash absolute left-0 -bottom-3 sm:-bottom-4 w-full h-4 sm:h-6" viewBox="0 0 600 30" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M4 22 C120 4 260 4 360 14 C440 22 520 24 596 8" fill="none" style="stroke:var(--color-secondary)" stroke-width="2.2" stroke-linecap="round"></path>
+            </svg>
+          </span>
+        </h1>
+        <p class="mt-9 text-lg sm:text-xl leading-relaxed text-[var(--site-body)]/90 max-w-xl">Candlelight, classic plates and a table you will not want to leave too early.</p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href="#menu-section" class="btn-gold">See Menu
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4"></path></svg>
+          </a>
+          <a href="#gallery-section" class="btn-line">View Gallery</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- facts as an inscription line -->
+    <div class="relative max-w-7xl w-full mx-auto px-5 sm:px-8 pb-10">
+      <div class="border-t border-[var(--site-heading)]/25 pt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+        <dl class="grid grid-cols-3 gap-4 sm:gap-12">
+          <div><dt class="sr-only">Google rating</dt><dd class="font-serif text-2xl sm:text-3xl text-[var(--site-heading)]">4.4</dd><dd class="meta text-[var(--site-body)]/70 mt-1 !text-[0.62rem] sm:!text-[0.7rem]">Google rating</dd></div>
+          <div><dt class="sr-only">Last light</dt><dd class="font-serif text-2xl sm:text-3xl text-[var(--site-heading)]">12AM</dd><dd class="meta text-[var(--site-body)]/70 mt-1 !text-[0.62rem] sm:!text-[0.7rem]">Last light</dd></div>
+          <div><dt class="sr-only">Open</dt><dd class="font-serif text-2xl sm:text-3xl text-[var(--site-heading)]">Daily</dd><dd class="meta text-[var(--site-body)]/70 mt-1 !text-[0.62rem] sm:!text-[0.7rem]">Mon – Sun</dd></div>
+        </dl>
+        <div class="social flex items-center gap-5 text-[var(--site-body)]">
+          <a id="social-hero-1" href="#" target="_blank" rel="noopener noreferrer" style="display:none"></a>
+          <a id="social-hero-2" href="#" target="_blank" rel="noopener noreferrer" style="display:none"></a>
+          <a id="social-hero-3" href="#" target="_blank" rel="noopener noreferrer" style="display:none"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- marquee of the day -->
+<div class="relative border-y border-[var(--site-border)] bg-[var(--site-surface)]/60 overflow-hidden py-5" aria-hidden="true">
+  <div class="marquee-track font-serif text-[var(--site-heading)]/80 text-xl sm:text-2xl tracking-[0.25em] uppercase whitespace-nowrap">
+    <span class="flex items-center gap-10 pr-10">First coffee <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Breakfast <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Long lunches <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Family tables <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Candlelit dinners <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Until midnight <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg></span>
+    <span class="flex items-center gap-10 pr-10">First coffee <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Breakfast <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Long lunches <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Family tables <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Candlelit dinners <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg> Until midnight <svg class="w-12 h-3 text-[var(--brand-primary)]" viewBox="0 0 200 20"><use href="#sym-ornament"></use></svg></span>
+  </div>
+</div>
+
+<!-- MENU -->
+<section id="menu-section" style="display:none" class="relative overflow-hidden py-24 sm:py-32">
+  <svg class="lattice opacity-50" aria-hidden="true"><rect width="100%" height="100%" fill="url(#pat-lozenge)"></rect></svg>
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 60% at 50% 40%, var(--color-bg) 30%, transparent 85%)"></div>
+  <svg class="absolute -right-24 top-10 w-[22rem] lg:w-[30rem] text-[var(--site-heading)] opacity-[0.1] pointer-events-none" style="transform:scaleX(-1)" viewBox="0 0 320 400" aria-hidden="true"><use href="#sym-branch"></use></svg>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-8">
+    <div class="text-center mb-14 sm:mb-16">
+      <svg class="w-40 h-4 mx-auto text-[var(--site-heading)]/70 mb-7" viewBox="0 0 200 20" aria-hidden="true"><use href="#sym-ornament"></use></svg>
+      <h2 class="inscription text-[clamp(2.2rem,6vw,4.25rem)] leading-none !tracking-[0.22em]">The Menu</h2>
+      <p class="mt-6 text-[var(--site-body)]/85 max-w-lg mx-auto leading-relaxed">From the first coffee at eight in the morning to the last plate before midnight — set out the way a menu card should be: unhurried, and easy to read by candlelight.</p>
+    </div>
+
+    <div class="menu-card brass px-6 py-12 sm:px-14 sm:py-16">
+      <p class="meta text-[var(--brand-secondary)] text-center mb-10">Sample card · dishes &amp; prices to be supplied by the kitchen</p>
+      <div id="menu-categories">
+        <div class="menu-cat">
+          <h3 data-field="category-name">Breakfast &amp; Coffee</h3>
+          <div data-role="menu-category-items">
+            <div class="mi">
+              <span data-field="title">Morning plate</span>
+              <span data-field="description">Placeholder — the kitchen&#39;s breakfast plate, described in a line.</span>
+              <span data-field="price">Price TBC</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+            <div class="mi">
+              <span data-field="title">Coffee &amp; something sweet</span>
+              <span data-field="description">Placeholder — coffee served from 8AM, with a pastry from the counter.</span>
+              <span data-field="price">Price TBC</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-cat">
+          <h3 data-field="category-name">Mains</h3>
+          <div data-role="menu-category-items">
+            <div class="mi">
+              <span data-field="title">From the grill</span>
+              <span data-field="description">Placeholder — a classic grilled main, to be named by the restaurant.</span>
+              <span data-field="price">Price TBC</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+            <div class="mi">
+              <span data-field="title">Slow-cooked house plate</span>
+              <span data-field="description">Placeholder — a traditional dish for long evenings and shared tables.</span>
+              <span data-field="price">Price TBC</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+            <div class="mi">
+              <span data-field="title">Seasonal salad</span>
+              <span data-field="description">Placeholder — fresh from the season, to sit beside any main.</span>
+              <span data-field="price">Price TBC</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-cat">
+          <h3 data-field="category-name">Desserts &amp; Drinks</h3>
+          <div data-role="menu-category-items">
+            <div class="mi">
+              <span data-field="title">Dessert of the evening</span>
+              <span data-field="description">Placeholder — something sweet to close the night.</span>
+              <span data-field="price">Price TBC</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+            <div class="mi">
+              <span data-field="title">Wine by the glass</span>
+              <span data-field="description">Placeholder — the house selection, poured until midnight.</span>
+              <span data-field="price">Price TBC</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="menu-category-template" style="display:none" class="menu-cat">
+          <h3 data-field="category-name">Category Name</h3>
+          <div data-role="menu-category-items">
+            <div data-role="menu-item-template" style="display:none" class="mi">
+              <span data-field="title">Item Name</span>
+              <span data-field="description">Description.</span>
+              <span data-field="price">$10</span>
+              <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center mt-4">
+        <a href="#location-section" class="btn-line">Find Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENINGS (services) -->
+<section id="services-section" style="display:none" class="relative overflow-hidden py-24 sm:py-32 bg-[var(--site-surface)]/40">
+  <svg class="absolute -left-20 -bottom-10 w-[20rem] lg:w-[28rem] text-[var(--site-heading)] opacity-[0.09] pointer-events-none" viewBox="0 0 320 400" aria-hidden="true"><use href="#sym-branch"></use></svg>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-8 items-end mb-12">
+      <h2 class="lg:col-span-6 text-[clamp(2.3rem,5.6vw,4.5rem)] leading-[1.05]">One table,<br/>from <span class="em-gold">zora</span> to midnight</h2>
+      <p class="lg:col-span-5 lg:col-start-8 text-[var(--site-body)]/85 leading-relaxed text-lg">Zora means dawn. We open at eight in the morning and keep the candles lit until twelve at night — so whether you come for coffee, a family lunch or a long dinner, the door is open.</p>
+    </div>
+
+    <!-- the arc of the day -->
+    <div class="relative mb-16" aria-hidden="true">
+      <svg class="w-full h-auto" viewBox="0 0 1000 250" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="day-g" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" style="stop-color:var(--color-secondary)"></stop>
+            <stop offset="55%" style="stop-color:var(--color-heading)"></stop>
+            <stop offset="100%" style="stop-color:var(--color-primary)"></stop>
+          </linearGradient>
+        </defs>
+        <path d="M40 230 H960" style="stroke:var(--color-border)" stroke-width="1"></path>
+        <path d="M40 230 Q500 -60 960 230" fill="none" stroke="url(#day-g)" stroke-width="1.6"></path>
+        <path d="M40 230 Q500 -60 960 230" fill="none" style="stroke:var(--color-heading)" stroke-opacity=".25" stroke-width="1" stroke-dasharray="2 8" transform="translate(0 14)"></path>
+        <circle cx="40" cy="230" r="18" style="fill:var(--color-heading)" fill-opacity=".9"></circle>
+        <circle cx="40" cy="230" r="32" fill="none" style="stroke:var(--color-heading)" stroke-opacity=".35"></circle>
+        <circle cx="327" cy="105" r="6" style="fill:var(--color-heading)"></circle>
+        <circle cx="673" cy="105" r="6" style="fill:var(--color-heading)"></circle>
+        <circle cx="960" cy="230" r="10" fill="none" style="stroke:var(--color-heading)" stroke-width="1.5"></circle>
+        <path d="M955 222 A10 10 0 1 0 966 236 A8 8 0 1 1 955 222 Z" style="fill:var(--color-heading)"></path>
+      </svg>
+      <ol class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 mt-6">
+        <li><p class="font-serif text-2xl text-[var(--site-heading)]">8AM</p><p class="meta text-[var(--site-body)]/70 mt-1">Doors &amp; first coffee</p></li>
+        <li class="md:text-center"><p class="font-serif text-2xl text-[var(--site-heading)]">Midday</p><p class="meta text-[var(--site-body)]/70 mt-1">Lunch</p></li>
+        <li class="md:text-center"><p class="font-serif text-2xl text-[var(--site-heading)]">Evening</p><p class="meta text-[var(--site-body)]/70 mt-1">Candles are lit</p></li>
+        <li class="md:text-right"><p class="font-serif text-2xl text-[var(--site-heading)]">12AM</p><p class="meta text-[var(--site-body)]/70 mt-1">Last light</p></li>
+      </ol>
+    </div>
+
+    <div id="services-grid">
+      <div class="ev-row">
+        <h3 data-field="title">Breakfast &amp; first coffee</h3>
+        <p data-field="description">The day begins early here. Coffee, a proper breakfast and a quiet corner before Sveti Nikole wakes up.</p>
+        <p data-field="price">From 8AM</p>
+        <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+      </div>
+      <div class="ev-row">
+        <h3 data-field="title">Long lunches &amp; family tables</h3>
+        <p data-field="description">Room for the whole family and for the occasions worth gathering for — birthdays, name days and celebrations. Ask us and we will set the table.</p>
+        <p data-field="price">Every day</p>
+        <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+      </div>
+      <div class="ev-row">
+        <h3 data-field="title">Evenings by candlelight</h3>
+        <p data-field="description">Classic plates, a glass of wine and no one hurrying you towards the door. Dinner here is meant to last.</p>
+        <p data-field="price">Until 12AM</p>
+        <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+      </div>
+      <div id="service-card-template" style="display:none" class="ev-row">
+        <h3 data-field="title">Service Name</h3>
+        <p data-field="description">Short description.</p>
+        <p data-field="price">From $80</p>
+        <div data-field="image-wrap" style="display:none"><img data-field="image" alt=""/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery-section" style="display:none" class="relative overflow-hidden py-24 sm:py-32">
+  <svg class="absolute right-0 top-0 w-[16rem] lg:w-[24rem] text-[var(--site-heading)] opacity-[0.08] pointer-events-none" style="transform:scale(-1,-1)" viewBox="0 0 320 400" aria-hidden="true"><use href="#sym-branch"></use></svg>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-12">
+    <div class="lg:col-span-3 lg:sticky lg:top-28 self-start">
+      <h2 class="inscription text-[clamp(2rem,4.6vw,3.25rem)] leading-tight !tracking-[0.2em]">After<br/>Dark</h2>
+      <p class="mt-6 text-[var(--site-body)]/85 leading-relaxed">The room, the plates and the light on the table. A few glimpses before you come and see it for yourself.</p>
+      <svg class="w-32 h-4 text-[var(--brand-primary)] mt-8" viewBox="0 0 200 20" aria-hidden="true"><use href="#sym-ornament"></use></svg>
+    </div>
+    <div class="lg:col-span-9">
+      <div id="gallery-grid">
+        <div class="g-tile" role="img" aria-label="Photo placeholder: the dining room by candlelight">
+          <div class="g-ph"><svg class="w-7 h-7 text-[var(--site-heading)]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M8 5l1.5-2h5L16 5"></path></svg><p class="meta text-[var(--site-heading)]/80 border-t border-[var(--site-heading)]/30 pt-2">The dining room · photo to come</p></div>
+        </div>
+        <div class="g-tile" role="img" aria-label="Photo placeholder: a plate from the kitchen">
+          <div class="g-ph"><svg class="w-7 h-7 text-[var(--site-heading)]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M8 5l1.5-2h5L16 5"></path></svg><p class="meta text-[var(--site-heading)]/80 border-t border-[var(--site-heading)]/30 pt-2">From the kitchen · photo to come</p></div>
+        </div>
+        <div class="g-tile" role="img" aria-label="Photo placeholder: a candlelit table set for dinner">
+          <div class="g-ph"><svg class="w-7 h-7 text-[var(--site-heading)]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M8 5l1.5-2h5L16 5"></path></svg><p class="meta text-[var(--site-heading)]/80 border-t border-[var(--site-heading)]/30 pt-2">Table for the evening · photo to come</p></div>
+        </div>
+        <div class="g-tile" role="img" aria-label="Photo placeholder: morning coffee">
+          <div class="g-ph"><svg class="w-7 h-7 text-[var(--site-heading)]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M8 5l1.5-2h5L16 5"></path></svg><p class="meta text-[var(--site-heading)]/80 border-t border-[var(--site-heading)]/30 pt-2">First coffee · photo to come</p></div>
+        </div>
+        <div class="g-tile" role="img" aria-label="Photo placeholder: a family celebration table">
+          <div class="g-ph"><svg class="w-7 h-7 text-[var(--site-heading)]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M8 5l1.5-2h5L16 5"></path></svg><p class="meta text-[var(--site-heading)]/80 border-t border-[var(--site-heading)]/30 pt-2">Celebrations · photo to come</p></div>
+        </div>
+        <div class="g-tile" role="img" aria-label="Photo placeholder: the restaurant at night">
+          <div class="g-ph"><svg class="w-7 h-7 text-[var(--site-heading)]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M8 5l1.5-2h5L16 5"></path></svg><p class="meta text-[var(--site-heading)]/80 border-t border-[var(--site-heading)]/30 pt-2">Bila Zora at night · photo to come</p></div>
+        </div>
+        <div id="gallery-item-template" style="display:none" class="g-tile">
+          <img data-field="image" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews-section" style="display:none" class="relative overflow-hidden py-24 sm:py-32 bg-[var(--site-surface)]/40">
+  <svg class="lattice opacity-30" aria-hidden="true"><rect width="100%" height="100%" fill="url(#pat-lozenge)"></rect></svg>
+  <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(180deg, var(--color-bg), transparent 30%, transparent 70%, var(--color-bg))"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4">
+      <p class="meta text-[var(--site-body)]/70">What guests say</p>
+      <div class="mt-4 flex items-end gap-4">
+        <span class="font-serif text-[var(--site-heading)] text-[clamp(5.5rem,14vw,9.5rem)] leading-[.85]">4.4</span>
+        <span class="text-[var(--brand-primary)] text-sm tracking-[0.3em] pb-3" aria-hidden="true">★★★★☆</span>
+      </div>
+      <p class="font-serif text-2xl text-[var(--site-heading)] mt-5">4.4 rating on Google</p>
+      <p class="mt-4 text-[var(--site-body)]/80 leading-relaxed">Our guests write their reviews on Google — read them there, in their own words, and leave yours after your visit.</p>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Bila+Zora+Sveti+Nikole" target="_blank" rel="noopener noreferrer" class="btn-line mt-8">Read reviews on Google
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6"></path></svg>
+      </a>
+    </div>
+    <div class="lg:col-span-8">
+      <div id="reviews-grid">
+        <div class="rv brass">
+          <p data-field="rating">★★★★★</p>
+          <p data-field="text">Placeholder — a guest review from Google will appear here, quoted exactly as the guest wrote it.</p>
+          <p data-field="author">Guest review · placeholder</p>
+        </div>
+        <div class="rv brass">
+          <p data-field="rating">★★★★★</p>
+          <p data-field="text">Placeholder — a second real review, chosen by the restaurant.</p>
+          <p data-field="author">Guest review · placeholder</p>
+        </div>
+        <div class="rv brass">
+          <p data-field="rating">★★★★★</p>
+          <p data-field="text">Placeholder — a third real review, chosen by the restaurant.</p>
+          <p data-field="author">Guest review · placeholder</p>
+        </div>
+        <div id="review-card-template" style="display:none" class="rv brass">
+          <p data-field="rating">★★★★★</p>
+          <p data-field="text">Review text here.</p>
+          <p data-field="author">Author Name</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location-section" class="relative overflow-hidden py-24 sm:py-32">
+  <svg class="absolute -left-10 top-0 w-[16rem] lg:w-[22rem] text-[var(--site-heading)] opacity-[0.1] pointer-events-none" style="transform:scaleY(-1)" viewBox="0 0 320 400" aria-hidden="true"><use href="#sym-branch"></use></svg>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+    <p class="meta text-[var(--site-body)]/70 mb-6 flex items-center gap-4"><span class="inline-block w-10 h-px bg-[var(--site-heading)]/60"></span>Find us · Sveti Nikole, North Macedonia</p>
+    <a id="location-address" href="https://www.google.com/maps/search/?api=1&amp;query=%D1%83%D0%BB.+%D0%9C%D0%B0%D1%80%D1%88%D0%B0%D0%BB+%D0%A2%D0%B8%D1%82%D0%BE+100+%D0%A1%D0%B2%D0%B5%D1%82%D0%B8+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B5" target="_blank" rel="noopener noreferrer" class="block font-serif text-[var(--site-heading)] text-[clamp(2.1rem,6.6vw,5.6rem)] leading-[1.05] hover:text-[var(--site-body)] transition-colors break-words">ул. Маршал Тито бр.100, Ж 2220</a>
+
+    <div class="mt-14 grid lg:grid-cols-12 gap-6 lg:gap-8">
+      <!-- map panel -->
+      <div class="lg:col-span-7 relative brass overflow-hidden min-h-[20rem] sm:min-h-[26rem]">
+        <div id="location-map-placeholder" class="absolute inset-0">
+          <svg class="w-full h-full" viewBox="0 0 700 420" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Stylised map of central Sveti Nikole with Bila Zora marked">
+            <rect width="700" height="420" fill="url(#pat-lozenge)" opacity=".5"></rect>
+            <g fill="none" style="stroke:var(--color-border)" stroke-width="10" stroke-linecap="round">
+              <path d="M-20 300 C160 260 300 230 720 140"></path>
+              <path d="M260 -20 C280 120 300 260 340 440"></path>
+              <path d="M520 -20 C500 140 520 300 600 440" style="stroke-width:6"></path>
+              <path d="M-20 120 C120 140 240 150 420 120" style="stroke-width:5"></path>
+            </g>
+            <g fill="none" style="stroke:var(--color-heading)" stroke-opacity=".35" stroke-width="1">
+              <circle cx="318" cy="238" r="50"></circle><circle cx="318" cy="238" r="95" stroke-dasharray="3 7"></circle><circle cx="318" cy="238" r="150" stroke-opacity=".18"></circle>
+            </g>
+            <g transform="translate(318 238)">
+              <circle r="26" style="fill:var(--color-heading)" fill-opacity=".18" class="candle"></circle>
+              <path d="M0 -16 L4 -4 L16 0 L4 4 L0 16 L-4 4 L-16 0 L-4 -4 Z" style="fill:var(--color-heading)"></path>
+            </g>
+            <text x="350" y="214" style="fill:var(--color-heading);font-family:var(--font-display);letter-spacing:.3em" font-size="16">BILA ZORA</text>
+            <text x="40" y="290" style="fill:var(--color-body);font-family:var(--font-body);letter-spacing:.2em" font-size="11" opacity=".6">МАРШАЛ ТИТО</text>
+            <g transform="translate(640 60)" style="stroke:var(--color-heading)" fill="none" stroke-opacity=".6"><circle r="18"></circle><path d="M0 -26 V26 M-26 0 H26" stroke-width=".6"></path><text y="-32" text-anchor="middle" style="fill:var(--color-heading);stroke:none;font-family:var(--font-display)" font-size="11">N</text></g>
+          </svg>
+        </div>
+        <iframe id="location-map-embed" title="Map showing Bila Zora" style="display:none" class="absolute inset-0 w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="absolute left-4 bottom-4 sm:left-6 sm:bottom-6">
+          <a id="location-directions-btn" href="#" target="_blank" rel="noopener noreferrer" style="display:none" class="btn-gold">Get directions</a>
+        </div>
+      </div>
+
+      <!-- contact card, overlapping -->
+      <div class="lg:col-span-5 lg:-ml-24 lg:mt-16 relative z-10 brass p-8 sm:p-10 self-start">
+        <h2 class="inscription text-2xl sm:text-3xl !tracking-[0.2em]">Visit us</h2>
+        <p class="mt-4 text-[var(--site-body)]/85 leading-relaxed">On the main street of Sveti Nikole — for breakfast on your way through Ovče Pole, or for a long evening with the people you love.</p>
+        <dl class="mt-8 space-y-5">
+          <div><dt class="meta text-[var(--site-body)]/60">Telephone</dt><dd class="mt-1"><a id="location-phone" href="tel:+38932000000" class="contact-link font-serif text-xl text-[var(--site-heading)]">+389 32 000 000</a></dd></div>
+          <div><dt class="meta text-[var(--site-body)]/60">Email</dt><dd class="mt-1"><a id="location-email" href="mailto:hello@bilazora.mk" class="contact-link font-serif text-xl text-[var(--site-heading)] break-all">hello@bilazora.mk</a></dd></div>
+          <div><dt class="meta text-[var(--site-body)]/60">Hours</dt><dd class="mt-1 font-serif text-xl text-[var(--site-heading)]">Mon - Sun : 8AM - 12AM</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- hours as a day strip -->
+    <div class="mt-14 border-y border-[var(--site-border)]">
+      <ul class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7">
+        <li id="location-hours-monday" class="day"><span class="d">Mon</span><span id="location-hours-monday-value">8AM - 12AM</span></li>
+        <li id="location-hours-tuesday" class="day"><span class="d">Tue</span><span id="location-hours-tuesday-value">8AM - 12AM</span></li>
+        <li id="location-hours-wednesday" class="day"><span class="d">Wed</span><span id="location-hours-wednesday-value">8AM - 12AM</span></li>
+        <li id="location-hours-thursday" class="day"><span class="d">Thu</span><span id="location-hours-thursday-value">8AM - 12AM</span></li>
+        <li id="location-hours-friday" class="day"><span class="d">Fri</span><span id="location-hours-friday-value">8AM - 12AM</span></li>
+        <li id="location-hours-saturday" class="day"><span class="d">Sat</span><span id="location-hours-saturday-value">8AM - 12AM</span></li>
+        <li id="location-hours-sunday" class="day"><span class="d">Sun</span><span id="location-hours-sunday-value">8AM - 12AM</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative overflow-hidden border-t border-[var(--site-border)] bg-[var(--site-surface)]/50 pt-20 pb-10">
+  <svg class="absolute right-[-4rem] bottom-[-3rem] w-[18rem] sm:w-[24rem] text-[var(--site-heading)] opacity-[0.1] pointer-events-none" style="transform:scaleX(-1)" viewBox="0 0 320 400" aria-hidden="true"><use href="#sym-branch"></use></svg>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <p class="font-serif text-[var(--site-heading)] text-[clamp(2.6rem,7vw,4.5rem)] leading-none tracking-[0.12em] uppercase">Bila Zora</p>
+        <svg class="w-40 h-4 text-[var(--brand-primary)] mt-6" viewBox="0 0 200 20" aria-hidden="true"><use href="#sym-ornament"></use></svg>
+        <p class="mt-6 text-[var(--site-body)]/80 max-w-sm leading-relaxed">From dawn until midnight, a table is waiting for you.</p>
+      </div>
+      <div class="md:col-span-3">
+        <p class="meta text-[var(--site-body)]/60 mb-3">Address</p>
+        <p class="text-[var(--site-body)] leading-relaxed">ул. Маршал Тито бр.100, Ж 2220<br/>Sveti Nikole, North Macedonia</p>
+        <p class="meta text-[var(--site-body)]/60 mt-6 mb-3">Hours</p>
+        <p class="text-[var(--site-body)]">Mon - Sun : 8AM - 12AM</p>
+      </div>
+      <div class="md:col-span-4">
+        <p class="meta text-[var(--site-body)]/60 mb-3">On this page</p>
+        <ul class="grid grid-cols-2 gap-y-2 text-[var(--site-body)]">
+          <li><a class="nav-link" href="#menu-section">Menu</a></li>
+          <li><a class="nav-link" href="#services-section">Evenings</a></li>
+          <li><a class="nav-link" href="#gallery-section">Gallery</a></li>
+          <li><a class="nav-link" href="#reviews-section">Reviews</a></li>
+          <li><a class="nav-link" href="#location-section">Find Us</a></li>
+        </ul>
+        <div class="social flex items-center gap-5 mt-8 text-[var(--site-body)]">
+          <a id="social-footer-1" href="#" target="_blank" rel="noopener noreferrer" style="display:none"></a>
+          <a id="social-footer-2" href="#" target="_blank" rel="noopener noreferrer" style="display:none"></a>
+          <a id="social-footer-3" href="#" target="_blank" rel="noopener noreferrer" style="display:none"></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-16 pt-6 border-t border-[var(--site-border)] flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-[var(--site-body)]/60">
+      <p>© <span id="year">2026</span> Bila Zora · Sveti Nikole</p>
+      <a href="https://consultprompts.com" target="_blank" rel="noopener noreferrer" style="font-size:11px;opacity:0.4">Powered by ConsultPrompts</a>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="/assets/js/site.js" defer=""></script><script src="/assets/js/page-1.js" defer=""></script><script src="/assets/js/handlers.js" defer=""></script></body></html>
